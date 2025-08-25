@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Latvia Campfire Map</title>
+    <style>
+        /* Make the map fill the whole screen */
+        #map {
+            height: 100vh;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+
+    <script>
+      // Initialize the map
+      function initMap() {
+        // Center on Latvia
+        const latvia = { lat: 56.8796, lng: 24.6032 };
+
+        // Create the map
+        const map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 6.5,
+          center: latvia,
+          mapId: "DEMO_MAP", // optional custom style
+        });
+
+        // Example camping spot marker
+        const marker = new google.maps.Marker({
+          position: { lat: 57.0, lng: 24.0 },
+          map,
+          title: "Nice camping spot",
+        });
+
+        // Info popup
+        const info = new google.maps.InfoWindow({
+          content: "<h3>Nice camping spot</h3><p>Legal campfire zone!</p>",
+        });
+
+        marker.addListener("click", () => {
+          info.open(map, marker);
+        });
+      }
+    </script>
+
+    <!-- Load Google Maps API -->
+    <script async
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1pCBbV-bE17Ja3CEz2BYqZBc9EgKQHgU&callback=initMap">
+    </script>
+</body>
+</html>
